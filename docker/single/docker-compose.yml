@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  make-directory:
+    image: ubuntu:latest
+
+    volumes:
+      - type: bind
+        source: ./
+        target: /usr/share/
+    command: sh -c "mkdir -p /usr/share/data /usr/share/logs"
+
+  elasticsearch_sigle_node:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+    container_name: es_single_node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+    ports:
+      - 9350:9200
+      - 9450:9300
+    volumes:
+      #- ../../config/single:/usr/share/elasticsearch/config
+      - ../../config/single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../../config/single/jvm.options:/usr/share/elasticsearch/config/jvm.options
+      - ./data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
+
+    depends_on:
+      - make-directory
