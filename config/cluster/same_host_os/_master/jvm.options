@@ -31,9 +31,8 @@
 ##
 
 
--Xms4g
--Xmx4g
-
+-Xms1g
+-Xmx1g
 
 
 ##

@@ -1,0 +1,30 @@
+instances:
+  - name: master
+    dns:
+      - master
+      - localhost
+    ip:
+      - 127.0.0.1      
+
+  - name: data1
+    dns:
+      - data1
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: data2
+    dns:
+      - data2  
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: kib01
+    dns:
+      - kib01
+      - localhost
+    ip:
+      - 127.0.0.1
+
+ 
