@@ -97,7 +97,7 @@ services:
       - data_plugin2:/usr/share/elasticsearch/plugins 
       # data 파일과 log 파일 호스트 볼륨에 저장하기위해 bind 마운트
       - ./data1:/usr/share/elasticsearch/data
-      - ./logs1:/usr/share/elasticsearch/logs
+      # - ./logs1:/usr/share/elasticsearch/logs
       # 'create_certs' 컨테이너를 통해 생성한 인증서 정보를 전달 받기위한 naemd 마운트
       - certs:/usr/share/elasticsearch/config/certificates           
     ports:
@@ -123,14 +123,29 @@ services:
       - data_config2:/usr/share/elasticsearch/config 
       - data_plugin2:/usr/share/elasticsearch/plugins 
       # data 파일과 log 파일 호스트 볼륨에 저장하기위해 bind 마운트
-      - ./data2:/usr/share/elasticsearch/data
-      - ./logs2:/usr/share/elasticsearch/logs
+      # - ./data2:/usr/share/elasticsearch/data
+      # - ./logs2:/usr/share/elasticsearch/logs
       # 'create_certs' 컨테이너를 통해 생성한 인증서 정보를 전달 받기위한 naemd 마운트
       - certs:/usr/share/elasticsearch/config/certificates           
     ports:
       - 7350:7350
     depends_on:
       - create_certs  
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.3.3
+    #conatiner 이름
+    container_name: kibana
+    #'master' container의 healthcheck가 완료 후 condition의 대한 정보가 'service_healthy' 알 때  해당 노드 생성
+    depends_on: {"master": {"condition": "service_healthy"}}
+    networks:
+      - eknetwork
+    #container port 설정
+    ports:
+      - 5601:5601
+    volumes:
+      - ../../../config/cluster/same_host_os/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - certs:/usr/share/kibana/config/certificates
 
 #Host volume의 실제 위치 local 일경우 
 volumes:
