@@ -1,5 +1,0 @@
-http.port: 9350 #elasticsearch Node 사용할 포트번호
-network.host: 0.0.0.0
-node.name: master #elasticsearch Node 이름
-cluster.name: elasticsearch-cluster #클러스터 이름
-cluster.initial_master_nodes: master # 최초 cluster 구성시에 마스터 노드로 선정될 노드 후보를 명시
