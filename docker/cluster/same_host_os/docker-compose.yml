@@ -96,7 +96,7 @@ services:
       - data_config1:/usr/share/elasticsearch/config 
       - data_plugin2:/usr/share/elasticsearch/plugins 
       # data 파일과 log 파일 호스트 볼륨에 저장하기위해 bind 마운트
-      - ./data1:/usr/share/elasticsearch/data
+      #- ./data1:/usr/share/elasticsearch/data
       # - ./logs1:/usr/share/elasticsearch/logs
       # 'create_certs' 컨테이너를 통해 생성한 인증서 정보를 전달 받기위한 naemd 마운트
       - certs:/usr/share/elasticsearch/config/certificates           
