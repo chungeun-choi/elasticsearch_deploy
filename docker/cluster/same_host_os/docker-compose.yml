@@ -6,12 +6,21 @@ services:
   make-directory:
     image: ubuntu:latest
 
+    entrypoint: /bin/bash
+
     volumes:
       - type: bind
         source: ./
         target: /usr/share/
-    command: sh -c "mkdir -p /usr/share/data1 /usr/share/logs1 /usr/share/data2 /usr/share/logs2"
 
+    user: "0:0"
+    
+    command: 
+      - -c
+      - |
+        mkdir -p /usr/share/data1 /usr/share/logs1 /usr/share/data2 /usr/share/logs2
+        chmod -R 777 /usr/share
+    
 
   #인증서 생성 service 실행 - 해당노드는 생성 후 command 작업이 끝나면 down 상태로 변경 됨
   create_certs:

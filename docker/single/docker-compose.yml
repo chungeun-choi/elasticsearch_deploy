@@ -3,11 +3,19 @@ services:
   make-directory:
     image: ubuntu:latest
 
+    entrypoint: /bin/bash
+
     volumes:
       - type: bind
         source: ./
         target: /usr/share/
-    command: sh -c "mkdir -p /usr/share/data /usr/share/logs"
+
+    user: "0:0"
+    command: 
+      - -c 
+      - |
+        mkdir -p /usr/share/data /usr/share/logs
+        chmod -R 777 /usr/share/
 
   elasticsearch_sigle_node:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3

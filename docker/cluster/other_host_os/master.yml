@@ -31,6 +31,8 @@ services:
         hard: -1
     #volume path 설정  
     volumes: 
+      # master config 파일을 마운트 하기위한 설정 ../../../config/cluster/other_host_os/_master/master.yml
+      - ../../../config/cluster/other_host_os/_master/master.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       # master(dedicate node) log를 확인하기위한 bind 마운트
       - ./master_logs:/usr/share/elasticsearch/logs
       # docker volume을 통해 config 정보 유지를 위해 named 마운트
