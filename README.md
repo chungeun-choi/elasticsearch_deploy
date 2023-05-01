@@ -298,52 +298,52 @@ Containers provide their respective services by isolating the kernel on a single
     
     1) ‘. /docker/cluster/same_host_os’ 디렉토리로 이동하여 ‘docker-compose’를 통해 컨테이너 생성하기
     
-    Go to /docker/cluster/same_host_os' directory and create containers through 'docker-compose’
+        Go to /docker/cluster/same_host_os' directory and create containers through 'docker-compose’
+        
+        ```bash
+        # 디렉토리로 이동
+        cd ./docker/cluster/same_host_os
+        # docker-compose 명령어를 통해 실행
+        docker-compose up -d
+        ```
     
-    ```bash
-    # 디렉토리로 이동
-    cd ./docker/cluster/same_host_os
-    # docker-compose 명령어를 통해 실행
-    docker-compose up -d
-    ```
-    
 
-2) elasticsearch user 비밀번호 설정 - Set elasticsear user password
+    2) elasticsearch user 비밀번호 설정 - Set elasticsear user password
 
-아래의 명령어를 master 컨테이너 내부로 접근하여 비밀번호를 초기화합니다
+        아래의 명령어를 master 컨테이너 내부로 접근하여 비밀번호를 초기화합니다
 
-Access the command below into the master container to initialize the password
+        Access the command below into the master container to initialize the password
 
-```bash
-# 컨테이너 내부로 접근
-docker exec -it master /bin/bash
-# elasticsearch user 비밀번호 초기화
-./bin/elasticsearch-setup-passwords interactive -url https://localhost:9350
-```
+        ```bash
+        # 컨테이너 내부로 접근
+        docker exec -it master /bin/bash
+        # elasticsearch user 비밀번호 초기화
+        ./bin/elasticsearch-setup-passwords interactive -url https://localhost:9350
+        ```
 
-3) cluster가 정상적으로 구축되었는지 확인 - Verify that the cluster is deployed successfully
+    3) cluster가 정상적으로 구축되었는지 확인 - Verify that the cluster is deployed successfully
 
-아래의 api를 호출하여 정상 적으로 노드가 서비스되고 있는지 확인
-Call the api below to verify that the node is being serviced normally
+        아래의 api를 호출하여 정상 적으로 노드가 서비스되고 있는지 확인  
+        Call the api below to verify that the node is being serviced normally
 
-```bash
-https://localhost:9350/_cat/nodes
-```
+        ```bash
+        https://localhost:9350/_cat/nodes
+        ```
 
-kibana 정상 작동 확인 - Confirm normal operation of kibana
+    4) kibana 정상 작동 확인 - Confirm normal operation of kibana
 
 
->💡 <b>kibana - elasticsearch auth 정보 kibana - elasticsearch auth information </b>
->
->해당 과정에서 지정한 비밀번호를 kibana 컨테이너와 elasticsearch master 노드를 연동하기위해 kibana.yml 파일을 수정해 주어야합니다
-./config/cluster/same_host_os/kibana/kbiana.yml 파일에서 `elasticsearch.username`,`elasticsearch.password` 를 수정해주어야합니다
-변경 후 kibana 컨테이너를 재시작합니다
->
->The kibana.yml file must be modified to link the specified password with the elasticsearch master node
-./config/cluster/same_host_os/kibana/kbiana.yml 파일에서 elasticsearch.username,elasticsearch.You need to modify the password
-Restart the kibana container after the change
->
->![https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png](https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png)
+        >💡 <b>kibana - elasticsearch auth 정보 kibana - elasticsearch auth information </b>
+        >
+        >해당 과정에서 지정한 비밀번호를 kibana 컨테이너와 elasticsearch master 노드를 연동하기위해 kibana.yml 파일을 수정해 주어야합니다
+        ./config/cluster/same_host_os/kibana/kbiana.yml 파일에서 `elasticsearch.username`,`elasticsearch.password` 를 수정해주어야합니다
+        변경 후 kibana 컨테이너를 재시작합니다
+        >
+        >The kibana.yml file must be modified to link the specified password with the elasticsearch master node
+        ./config/cluster/same_host_os/kibana/kbiana.yml 파일에서 elasticsearch.username,elasticsearch.You need to modify the password
+        Restart the kibana container after the change
+        >
+        >![https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png](https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png)
 
 **분산 컴퓨팅 환경에서 컨테이너를 통해 구축하기 - Deploy from a container in a distributed computing environment**
 
@@ -360,47 +360,47 @@ Restart the kibana container after the change
 
 1) master(Dedicate) 노드 컨테이너 실행시키기 - Run master (Dedicate) node container
 
-master(Dedicate) 노드를 생성하기 위해 VM에서 컨테이너를 실행합니다 아래의 명령어를 통해 진행합니다
-Run containers on VMs to create master (Dedicate) nodes Use the command below to proceed
+    master(Dedicate) 노드를 생성하기 위해 VM에서 컨테이너를 실행합니다 아래의 명령어를 통해 진행합니다
+    Run containers on VMs to create master (Dedicate) nodes Use the command below to proceed
 
-```bash
-# 디렉토리 이동 (프로젝트 디렉토리 기준)
-cd ./docker/cluster/other_host_os
-# docker 컨테이너 생성
-docker-compose -f master.yml up -d
-```
+    ```bash
+    # 디렉토리 이동 (프로젝트 디렉토리 기준)
+    cd ./docker/cluster/other_host_os
+    # docker 컨테이너 생성
+    docker-compose -f master.yml up -d
+    ```
 
 2) elasticsearch auth 정보 변경 - changing elasticsearch auth information
 master(Dedicate) 노드 컨테이너 내부로 접근하여 아래의 명령어를 통해 각 user 별 비밀번호를 변경합니다
 
-Access to each m node container internal and change the password below
+    Access to each m node container internal and change the password below
 
-```bash
-docker exec -it master /bin/bash
+    ```bash
+    docker exec -it master /bin/bash
 
-./bin/elasticsearch-setup
-```
+    ./bin/elasticsearch-setup
+    ```
 
 3) enrollment token 발급 - Create enrollment token
 
-master(Dedicate) 노드 컨테이너 내부로 접근하여 아래의 명령어로 토큰 발급 → 발급한 토큰은 노드 추가 시 사용 ( ‘3)data 노E드 추가를 위한 ‘.env’파일의 `ENROLLMENT_TOKEN` 값 추가’ 항목 참조)
+    master(Dedicate) 노드 컨테이너 내부로 접근하여 아래의 명령어로 토큰 발급 → 발급한 토큰은 노드 추가 시 사용 ( ‘3)data 노E드 추가를 위한 ‘.env’파일의 `ENROLLMENT_TOKEN` 값 추가’ 항목 참조)
 
-Access the master (Dedicate) node container and create a token with the command below → Use the token created when adding a node (see the topic '3)Add ENROLLMENT_TOKEN value' in the '.env' file for adding a data node.)
+    Access the master (Dedicate) node container and create a token with the command below → Use the token created when adding a node (see the topic '3)Add ENROLLMENT_TOKEN value' in the '.env' file for adding a data node.)
 
-```bash
-docker exec -it master /bin/bash
-./bin/elasticsearch-create-enrollment-token -s node
-```
+    ```bash
+    docker exec -it master /bin/bash
+    ./bin/elasticsearch-create-enrollment-token -s node
+    ```
 
 4) data 노드 추가를 위한 ‘.env’파일의 `ENROLLMENT_TOKEN` 값 추가 - Add ENROLLEMENT_TOKEN value in file '.env' for adding data nodes
 
-데이터 노드로 추가할 VM에서 프로젝트를 클론 받은 뒤  ‘./docker/cluster/other_host_os’ 로 이동하여
-2번 항목에서 발급한 토큰의 값을 .env 파일의 `ENROLLMENT_TOKEN` 에 추가합니다
+    데이터 노드로 추가할 VM에서 프로젝트를 클론 받은 뒤  ‘./docker/cluster/other_host_os’ 로 이동하여
+    2번 항목에서 발급한 토큰의 값을 .env 파일의 `ENROLLMENT_TOKEN` 에 추가합니다
 
-Copy the project from the VM you want to add as a data node and go to './docker/cluster/other_host_os'
-Add the value of the token issued in item 2 to ENROLLEMENT_TOKEN in the .env file
+    Copy the project from the VM you want to add as a data node and go to './docker/cluster/other_host_os'
+    Add the value of the token issued in item 2 to ENROLLEMENT_TOKEN in the .env file
 
-![https://user-images.githubusercontent.com/65060314/229431348-e7e337a7-ac68-4189-8dd4-a8c433c284be.png](https://user-images.githubusercontent.com/65060314/229431348-e7e337a7-ac68-4189-8dd4-a8c433c284be.png)
+    ![https://user-images.githubusercontent.com/65060314/229431348-e7e337a7-ac68-4189-8dd4-a8c433c284be.png](https://user-images.githubusercontent.com/65060314/229431348-e7e337a7-ac68-4189-8dd4-a8c433c284be.png)
 
 5) data 노드 실행 - Run data node
 
@@ -419,20 +419,20 @@ Add the value of the token issued in item 2 to ENROLLEMENT_TOKEN in the .env fil
     {master 노드 host 주소}/_cat/nodes
     ```
 
-![Untitled](https://user-images.githubusercontent.com/65060314/229438779-d39488fe-b7a4-4a6b-88ce-2f26829c5e8f.png)
+    ![Untitled](https://user-images.githubusercontent.com/65060314/229438779-d39488fe-b7a4-4a6b-88ce-2f26829c5e8f.png)
 
 
->💡 <b>enrollment token을 활용한 kibana 연동 방법- Kibana Interworking Method Using Enrollment Token</b>  
->docker를 통해서 kibana 컨테이너를 생성하거나 tar 파일의 압축을 해제하여 실행 시키면 아래와 같은 화면이 출력됩니다
->
->1) elasticsearch master 노드에서 ‘./bin/elasticsearch-create-enrollment-token -s kibana’ 명령을 통해 토큰을 발급받아 입력합니다
->
->2) kibana 서비스 로그에 남겨진 식별 코드를 입력하여 연동을 완료합니다
->
->If you create a kibana container through the 💡 docker or unzip the tar file and run it, the following screen will be displayed
->
->1) From the elasticsearch master node, issue and enter the token via the command './bin/elasticsearch-create-enrollment-token-skibana'
->
->2) Complete the interworking by entering the identification code left in the kibana service log
+    >💡 <b>enrollment token을 활용한 kibana 연동 방법- Kibana Interworking Method Using Enrollment Token</b>  
+    >docker를 통해서 kibana 컨테이너를 생성하거나 tar 파일의 압축을 해제하여 실행 시키면 아래와 같은 화면이 출력됩니다
+    >
+    >1) elasticsearch master 노드에서 ‘./bin/elasticsearch-create-enrollment-token -s kibana’ 명령을 통해 토큰을 발급받아 입력합니다
+    >
+    >2) kibana 서비스 로그에 남겨진 식별 코드를 입력하여 연동을 완료합니다
+    >
+    >If you create a kibana container through the 💡 docker or unzip the tar file and run it, the following screen will be displayed
+    >
+    >1) From the elasticsearch master node, issue and enter the token via the command './bin/elasticsearch-create-enrollment-token-skibana'
+    >
+    >2) Complete the interworking by entering the identification code left in the kibana service log
 
 
