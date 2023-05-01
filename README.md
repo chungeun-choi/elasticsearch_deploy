@@ -10,14 +10,14 @@
 
 ## 1) **필요 패키지 설치 Install the required package**
 
-<aside>
-💡 **패키지 설치 전 패지키 매니저 업데이트 - Update Manager update before install package installation**
 
-’sudo apt-get udpate’, ‘sudo apt-get upgrade’ 명령어를 통해서 패키지 매니저 업데이트
+💡  <b>패키지 설치 전 패지키 매니저 업데이트 - Update Manager update before install package installation</b>
 
-Update package manager through 'sudo apt-get udpate' and 'sudo apt-get upgrade' commands
+>’sudo apt-get udpate’, ‘sudo apt-get upgrade’ 명령어를 통해서 패키지 매니저 업데이트
+>
+>Update package manager through 'sudo apt-get udpate' and 'sudo apt-get upgrade' commands
 
-</aside>
+
 
 | package name | description |
 | --- | --- |
@@ -110,12 +110,13 @@ How to install Elasticsearch
 
 There are two methods: installing through Docker and downloading and running tar files related to installation in general
 
-<aside>
-💡 **Config File**
-두 가지 설치 방식 모두 ‘elasticsearch.yml’, ‘jvm_options’ 파일에서 설정을 변경한 뒤 반영할 수 있도록 설정 됩니다
+<br>
+
+💡 <b>Config File</b>  
+>두 가지 설치 방식 모두 ‘elasticsearch.yml’, ‘jvm_options’ 파일에서 설정을 변경한 뒤 반영할 수 있도록 설정 됩니다  
 All two installations methods are set to reflect the settings from the 'jvm_options" and “elasticsearch.yml”
 
-</aside>
+<br>
 
 ### Docker
 
@@ -123,19 +124,19 @@ Install guide  : [https://www.elastic.co/guide/en/elasticsearch/reference/8.3/do
 
 1) docker hub에서 elasticsearch 공식 이미지 다운로드
 
-Download the official image of elasticsearch from the docker hub
+    Download the official image of elasticsearch from the docker hub
 
-```bash
-docker pull docker.elastic.co/elasticsearch/elasticsearch:8.3.3
-```
+    ```bash
+    docker pull docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+    ```
 
 2) 아래의 명령어를 통해 docker conatiner 생성
 
-Use the command below to create a docker conatiner
+    Use the command below to create a docker conatiner
 
-```bash
-docker run -d --name elasticsearch -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch
-```
+    ```bash
+    docker run -d --name elasticsearch -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch
+    ```
 
 ### VM (Host OS)
 
@@ -181,7 +182,7 @@ Run it through the command below
 
 ## 2) single 노드 구성 방법 - Single node configuration method
 
-### D**ocker 기반 설치 -  Install to use Docker**
+### Docker 기반 설치 -  Install to use Docker**
 
 docker 기반으로 single 노드형태의 elasticsearch 설치는 ‘./docker/single’ 디렉토리 하위에 존재하는 docker-compose 파일을 실행 시킴으로 생성됩니다
 
@@ -348,16 +349,16 @@ Restart the kibana container after the change
 
 **분산 컴퓨팅 환경에서 컨테이너를 통해 구축하기 - Deploy from a container in a distributed computing environment**
 
-<aside>
-💡 **네트워크는 호스트의 정보를 따라갑니다**
-해당 내용에서 elasticsearch는 컨테이너로 격리는되어지지만 네트워크는 호스트의 네트워크를 그대로 전달 받아 구축되어집니다 그 이유는 enrollment token을 통해 클러스터가 구축되어 질 때 Host 네트워크가 아닐 경우 보안설정 자동화에서 에러가 발생합니다
+<br>
 
-**The network follows the host's information**
-In this context, elasticsearch is isolated to containers, but the network is built by communicating the host's network as it is because when a cluster is built through the enrollment token, if it is not a host network, the security settings automation fails
+💡 <b>네트워크는 호스트의 정보를 따라갑니다 - The network follows the host's information<b>  
+>해당 내용에서 elasticsearch는 컨테이너로 격리는되어지지만 네트워크는 호스트의 네트워크를 그대로 전달 받아 구축되어집니다 그 이유는 enrollment token을 통해 클러스터가 구축되어 질 때 Host 네트워크가 아닐 경우 보안설정 자동화에서 에러가 발생합니다
+>
+>In this context, elasticsearch is isolated to containers, but the network is built by communicating the host's network as it is because when a cluster is built through the enrollment token, if it is not a host network, the security settings automation fails
 
-</aside>
+<br>
 
-- **cluster 컨테이너 생성과정 - Cluster Container Creation Process**
+ **cluster 컨테이너 생성과정 - Cluster Container Creation Process**
 
 1) master(Dedicate) 노드 컨테이너 실행시키기 - Run master (Dedicate) node container
 
@@ -405,20 +406,20 @@ Add the value of the token issued in item 2 to ENROLLEMENT_TOKEN in the .env fil
 
 5) data 노드 실행 - Run data node
 
-```bash
-# 디렉토리 이동 (프로젝트 디렉토리 기준)
-cd ./docker/cluster/other_host_os
-# data 1 실행
-docker-compose -f data1.yml up -d
-```
+    ```bash
+    # 디렉토리 이동 (프로젝트 디렉토리 기준)
+    cd ./docker/cluster/other_host_os
+    # data 1 실행
+    docker-compose -f data1.yml up -d
+    ```
 
 6) 정상작동 확인 - Check normal operation 
 
-명령어로 확인 -  Confirm with command
+    명령어로 확인 -  Confirm with command
 
-```bash
-{master 노드 host 주소}/_cat/nodes
-```
+    ```bash
+    {master 노드 host 주소}/_cat/nodes
+    ```
 
 ![Untitled](https://user-images.githubusercontent.com/65060314/229438779-d39488fe-b7a4-4a6b-88ce-2f26829c5e8f.png)
 
