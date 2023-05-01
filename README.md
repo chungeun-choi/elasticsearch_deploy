@@ -32,12 +32,12 @@ Install package to download files through lurl |
 
 ## 2) **Elasticsearch os(ubuntu) 설정  -  OS settings**
 
-Elasitcsearch 노드를 설치하기 위한 기본 os 설정입니다 ‘ubuntu’ OS 에서는 `/etc/security/limits.conf` 파일에 아래의 내용들을 추가하는 작업을 합니다
+Elasitcsearch 노드를 설치하기 위한 기본 os 설정입니다 ‘ubuntu’ OS 에서는 `/etc/security/limits.conf` 파일에 아래의 내용들을 추가하는 작업을 합니다  
 Default os setting for installing Elasitcsearch node The 'ubuntu' OS adds the following contents to the `/etc/security/limits.conf` file
 
 **File descriptor check**
 
-유저에 의해 프로세스 실행 시 가질 수 있는 디스크립터 제한
+유저에 의해 프로세스 실행 시 가질 수 있는 디스크립터 제한  
 Restricted disk assembly that can have been executed
 
 ```coffeescript
@@ -50,7 +50,7 @@ tguser - nofile 65536
 
 **Maximum number of threads check**
 
-유저에 의해 실행 할 수 있는 프로세스의 갯수 제한 설정
+유저에 의해 실행 할 수 있는 프로세스의 갯수 제한 설정  
 Setting a limit on the number of processes that can be run by the user
 
 ```coffeescript
@@ -63,7 +63,7 @@ tguser - nproc 65536
 
 **Max file size check**
 
-유저에 의해 실행된 프로세스가 확인할 수 있는 파일 사이즈 제한 설정
+유저에 의해 실행된 프로세스가 확인할 수 있는 파일 사이즈 제한 설정  
 Set File Size restrictions executed by the user
 
 ```coffeescript
@@ -76,7 +76,7 @@ tguser - fsize unlimited
 
 **Maximum size virtual memory check**
 
-유저 당 메모리 제한해제 설정
+유저 당 메모리 제한해제 설정  
 Turn off memory limits per user
 
 ```coffeescript
@@ -87,9 +87,9 @@ root soft memlock unlimited
 tguser - memlock unlimited
 ```
 
-`**vm.max_map_count` 설정변경**
+**'vm.max_map_count` 설정변경**
 
-‘/etc/sysctl.conf’ 파일에의 내용을 아래와 같이 추가하여 줍니다
+‘/etc/sysctl.conf’ 파일에의 내용을 아래와 같이 추가하여 줍니다  
 Add the contents to the file '/etc/sysctl.conf' as follows
 
 ```bash
