@@ -434,5 +434,5 @@ master(Dedicate) 노드 컨테이너 내부로 접근하여 아래의 명령어�
     >1) From the elasticsearch master node, issue and enter the token via the command './bin/elasticsearch-create-enrollment-token-skibana'
     >
     >2) Complete the interworking by entering the identification code left in the kibana service log
-
+    ![image](https://user-images.githubusercontent.com/65060314/235395017-f2ba1120-4af7-47b2-a87e-b3ba8981080b.png)
 
