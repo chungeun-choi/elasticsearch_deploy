@@ -11,8 +11,8 @@
 ## 1) **필요 패키지 설치 Install the required package**
 
 
-💡  <b>패키지 설치 전 패지키 매니저 업데이트 - Update Manager update before install package installation</b>
-
+>💡  <b>패키지 설치 전 패지키 매니저 업데이트 - Update Manager update before install package installation</b>
+>
 >’sudo apt-get udpate’, ‘sudo apt-get upgrade’ 명령어를 통해서 패키지 매니저 업데이트
 >
 >Update package manager through 'sudo apt-get udpate' and 'sudo apt-get upgrade' commands
