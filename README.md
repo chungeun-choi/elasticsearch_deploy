@@ -137,6 +137,7 @@ Install guide  : [https://www.elastic.co/guide/en/elasticsearch/reference/8.3/do
     ```bash
     docker run -d --name elasticsearch -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch
     ```
+<br>  
 
 ### VM (Host OS)
 
@@ -179,8 +180,10 @@ Run it through the command below
     ./bin/elasticsearch
     ```
     
+<br>  
 
 ## 2) single 노드 구성 방법 - Single node configuration method
+<br>  
 
 ### Docker 기반 설치 -  Install to use Docker**
 
@@ -240,6 +243,7 @@ Go to './docker/single' directory of project cloned from github and run**
 ```yaml
 docker-compose up -d 
 ```
+<br>  
 
 ### VM(Host OS) **기반 설치 - Install to use VM enviroment**
 
@@ -258,12 +262,14 @@ Navigate to and run the downloaded directory from the official website of elasti
 ```yaml
 ./bin/elasticsearch
 ```
+<br>  
 
 ## 2) 클러스터 구성 방법 (2개 이상의 노드 구성) - Cluster configuration method (two or more nodes configured)
 
 elasticsearch는 분산 노드 형태로 구성되어 서비스되어지는 것이 일반적입니다 아래의 내용은 docker container, vm 기반의 환경에서  클러스터 구성방법에 대한 내용입니다  
 
 Elasticsearch is typically serviced in the form of distributed nodes Below is how to configure a cluster in a docker container, vm-based environment
+<br>  
 
 ### D**ocker 기반 설치 - Install to use Docker**
 
@@ -279,6 +285,8 @@ Containers provide their respective services by isolating the kernel on a single
 
 서로 다른 Host OS 상에서 컨테이너로 클러스터 구성 - Configuring cluster configuration to containers on other hosts
 
+<br>  
+
 **같은 Host os 에서 클러스터 구축하기 - Building a Cluster on the Same Hostos**
 
 - 설치 관련 파일 설명 - Description related file description
@@ -293,6 +301,8 @@ Containers provide their respective services by isolating the kernel on a single
     
     ![https://user-images.githubusercontent.com/65060314/229338721-296be910-89be-456b-b248-1e34a8e02916.png](https://user-images.githubusercontent.com/65060314/229338721-296be910-89be-456b-b248-1e34a8e02916.png)
     
+<br>  
+
 
 - **cluster 컨테이너 생성과정 - Cluster container creation process**
     
@@ -345,9 +355,10 @@ Containers provide their respective services by isolating the kernel on a single
         >
         >![https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png](https://user-images.githubusercontent.com/65060314/229339203-21a4a1c6-92d5-46fd-96a8-e7b5cf10da9c.png)
 
+<br>  
+
 **분산 컴퓨팅 환경에서 컨테이너를 통해 구축하기 - Deploy from a container in a distributed computing environment**
 
-<br>
 
 >💡 <b>네트워크는 호스트의 정보를 따라갑니다 - The network follows the host's information<b>  
 >해당 내용에서 elasticsearch는 컨테이너로 격리는되어지지만 네트워크는 호스트의 네트워크를 그대로 전달 받아 구축되어집니다 그 이유는 enrollment token을 통해 클러스터가 구축되어 질 때 Host 네트워크가 아닐 경우 보안설정 자동화에서 에러가 발생합니다
