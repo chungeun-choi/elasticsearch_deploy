@@ -140,7 +140,7 @@ Install guide  : [https://www.elastic.co/guide/en/elasticsearch/reference/8.3/do
 
 ### VM (Host OS)
 
-- [Elastic](https://www.elastic.co/kr/downloads/elasticsearch) 공식 다운로드 페이지에서 tar 파일을 다운로드 받습니다 (wget 사용하여 파일링크로 다운로드)
+- [Elastic](https://www.elastic.co/kr/downloads/elasticsearch) 공식 다운로드 페이지에서 tar 파일을 다운로드 받습니다 (wget 사용하여 파일링크로 다운로드)  
 Download the tar file from the Elastic official download page (use wget to download to file)
     
     ```bash
@@ -152,14 +152,14 @@ Download the tar file from the Elastic official download page (use wget to downl
     tar -xvf elasticsearch-8.3.3-linux-x86_64.tar.gz
     ```
     
-- 다운로드 받은 tar 파일을 압축 해제합니다
+- 다운로드 받은 tar 파일을 압축 해제합니다  
 Extract the downloaded tar file
     
     ```bash
     tar -xvf elasticsearch-8.3.3-linux-x86_64.tar.gz
     ```
     
-- 서비스 실행 전 config 파일을 수정합니다
+- 서비스 실행 전 config 파일을 수정합니다  
 Modify the service before the service execution configuration
     
     **디렉토리의 위치는 각 설치 환경마다 다를 수 있습니다!
@@ -169,7 +169,7 @@ Modify the service before the service execution configuration
     mv ./config/ ./elasticssearch-8.3.3/config/
     ```
     
-- 아래의 명령어를 통해 실행 시킵니다
+- 아래의 명령어를 통해 실행 시킵니다  
 Run it through the command below
     
     **압축 해제한 elasticsearch 디렉토리에서 아래와 같이 실행 시킵니다! 
