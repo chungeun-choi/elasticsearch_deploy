@@ -183,8 +183,6 @@ Run it through the command below
 <br>  
 
 ## 2) single 노드 구성 방법 - Single node configuration method
-<br>  
-
 ### Docker 기반 설치 -  Install to use Docker**
 
 docker 기반으로 single 노드형태의 elasticsearch 설치는 ‘./docker/single’ 디렉토리 하위에 존재하는 docker-compose 파일을 실행 시킴으로 생성됩니다  
@@ -264,7 +262,7 @@ Navigate to and run the downloaded directory from the official website of elasti
 ```
 <br>  
 
-## 2) 클러스터 구성 방법 (2개 이상의 노드 구성) - Cluster configuration method (two or more nodes configured)
+## 3) 클러스터 구성 방법 (2개 이상의 노드 구성) - Cluster configuration method (two or more nodes configured)
 
 elasticsearch는 분산 노드 형태로 구성되어 서비스되어지는 것이 일반적입니다 아래의 내용은 docker container, vm 기반의 환경에서  클러스터 구성방법에 대한 내용입니다  
 
