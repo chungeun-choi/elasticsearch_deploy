@@ -19,9 +19,9 @@
 
 
 
-| package name | description |
-| --- | --- |
-| net-tools | HOST의 네트워크 정보를 확이하기 위해 설치 
+| package name | description |description_eglish |
+| --- | --- |---|
+| net-tools | HOST의 네트워크 정보를 확인하기 위해 설치 
 Installation to verify network information for the HOST |
 | unzip | 압축 파일 관리를 위한 패키지 설치
 Install package for compression file management |
