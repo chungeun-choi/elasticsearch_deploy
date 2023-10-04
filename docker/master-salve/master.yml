@@ -28,6 +28,9 @@ services:
       memlock:
         soft: -1
         hard: -1    
+    ports:
+      - 9200:9200
+      - 9300:9300
     #volume path 설정  
     volumes: 
       - $MASTER_JVM_PATH:/usr/share/elasticsearch/config/jvm.options
@@ -35,5 +38,5 @@ services:
       - ./master_data:/usr/share/elasticsearch/data
       - ./master_logs:/usr/share/elasticsearch/logs
 
-    #container 내부 통신을 위한 브릿지 네트워크 생성   
-    network_mode: "host"  
+    # #container 내부 통신을 위한 브릿지 네트워크 생성   
+    # network_mode: "host"  
