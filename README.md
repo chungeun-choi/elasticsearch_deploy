@@ -1,8 +1,8 @@
-## Deployment Configuration
+## Deploy Elasticsearch with docker
 
 This repository is defined **to deploy Elasticsearch using Docker containers** within a dynamic infrastructure environment.
 
-### Deployment Methods
+### Deployment structs
 
 This repository supports three deployment methods:
 
