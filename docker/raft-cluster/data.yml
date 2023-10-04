@@ -24,7 +24,7 @@ services:
     #사용되는 elasticsearch image 
     image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
     #container
-    container_name: data
+    container_name: data3
     ulimits:
       memlock:
         soft: -1
@@ -33,7 +33,6 @@ services:
     environment:
       - http.port=9360
       - cluster.name=elastic-stack
-      - node.roles:[data]
       - "ES_JAVA_OPTS=-Xmx2g -Xms2g"
       - ENROLLMENT_TOKEN=$ENROLLMENT_TOKEN       
     #volume path 설정  

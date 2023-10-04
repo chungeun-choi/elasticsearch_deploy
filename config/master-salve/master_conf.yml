@@ -1,0 +1,9 @@
+cluster.name: "elasticsearch_cluster"
+network.host: 0.0.0.0
+
+http.port: 9200
+transport.port: 9300
+xpack.security.enabled: false
+
+node.name: "master"
+cluster.initial_master_nodes: "master"
