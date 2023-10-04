@@ -14,13 +14,12 @@ services:
     command: 
       - -c
       - |
-        mkdir -p /usr/share/data_data /usr/share/data_logs
-        chmod -R 777 /usr/share/
-
+        mkdir -p /usr/share/data2_data /usr/share/data2_logs
+        chmod -R 777 /usr/share/data1_logs
 
 
   # elasticsearch master node container 생성  
-  data:
+  data2:
     #사용되는 elasticsearch image 
     image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
     #container
@@ -28,27 +27,15 @@ services:
     ulimits:
       memlock:
         soft: -1
-        hard: -1
-
-    environment:
-      - http.port=9360
-      - cluster.name=elastic-stack
-      - "ES_JAVA_OPTS=-Xmx2g -Xms2g"
-      - ENROLLMENT_TOKEN=$ENROLLMENT_TOKEN       
-    #volume path 설정  
+        hard: -1    
+    ports:
+      - 9230:9230
+      - 9330:9330
     volumes: 
-      # master(dedicate node) log를 확인하기위한 bind 마운트
-      - ./data_logs:/usr/share/elasticsearch/logs
-      - ./data_data:/usr/share/elasticsearch/data
-      # docker volume을 통해 config 정보 유지를 위해 named 마운트
-      - data_config1:/usr/share/elasticsearch/config
-      - data_plugin1:/usr/share/elasticsearch/plugins
+      - $DATA_JVM_PATH:/usr/share/elasticsearch/config/jvm.options
+      - $DATA2_CONF_PATH:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data2_data:/usr/share/elasticsearch/data
+      - ./data2_logs:/usr/share/elasticsearch/logs
 
-    #container 내부 통신을 위한 브릿지 네트워크 생성   
-    network_mode: "host"  
-
-volumes:
-  data_config1:
-    driver: local
-  data_plugin1:
-    driver: local
+    # #container 내부 통신을 위한 브릿지 네트워크 생성   
+    # network_mode: "host"  

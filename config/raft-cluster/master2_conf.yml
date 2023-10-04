@@ -1,0 +1,18 @@
+cluster.name: "elasticsearch_cluster"
+network.host: 0.0.0.0
+
+http.port: 9210
+transport.port: 9310
+xpack.security.enabled: false
+
+node.name: master2
+node.roles: [master]
+
+cluster.initial_master_nodes: 
+  - master1
+  - master2
+discovery.seed_hosts: 
+  - master1:9300
+  - data1:9320
+  # - data2:9330
+  # - data3:9340
