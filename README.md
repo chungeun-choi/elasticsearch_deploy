@@ -21,6 +21,7 @@ This repository supports three deployment methods:
 - **RAFT Cluster**
     
     ![raft_cluaster](https://github.com/cucuridas/elasticsearch_deploy/assets/65060314/1cc948e6-2d6b-42f0-9968-f977399c0211)
+    
     Comprises a total of 5 Elasticsearch nodes: 2 Master nodes and 3 Data nodes. Data nodes are configured with `voting_only` to support a quorum-based master election mechanism.
     
 
