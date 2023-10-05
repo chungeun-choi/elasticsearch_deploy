@@ -51,7 +51,7 @@ pipeline {
         stage("Deploy elasticsearch cluster") {
             steps {
                 script {
-                    println(struct_value)
+                    sh (script: "docker ps")
                 }
             }
         }
