@@ -1,23 +1,5 @@
 version: '3.8'
 services:
-
-
-  # 필요 디렉토리 생성 - 해당노드는 생성 후 command 작업이 끝나면 down 상태로 변경 됨
-  make-directory:
-    image: ubuntu:latest
-    entrypoint: /bin/bash
-    volumes:
-      - type: bind
-        source: ./
-        target: /usr/share/
-    user: "0:0"
-    command: 
-      - -c
-      - |
-        mkdir -p /usr/share/master1_logs
-        chmod -R 777 /usr/share/
-
-
   # elasticsearch master node container 생성  
   master1:
     #사용되는 elasticsearch image 
@@ -33,9 +15,11 @@ services:
       - 9300:9300
     #volume path 설정  
     volumes: 
-      - $MASTER_JVM_PATH:/usr/share/elasticsearch/config/jvm.options
-      - $MASTER1_CONF_PATH:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./master1_logs:/usr/share/elasticsearch/logs
+      - ./config/master_jvm.options:/usr/share/elasticsearch/config/jvm.options
+      - ./config/master1_conf.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - master1_data:/usr/share/elasticsearch/data
+      - master1_logs:/usr/share/elasticsearch/logs
 
-    # #container 내부 통신을 위한 브릿지 네트워크 생성   
-    # network_mode: "host"  
+volumes:
+  master1_data:
+  master1_logs:
