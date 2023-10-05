@@ -18,6 +18,6 @@ def run_all_yml_in_directory(directory_path):
             run_docker_compose(yml_path)
 
 # 실행
-#directory_path = sys.argv[1]
-directory_path = "docker/single"
+directory_path = sys.argv[1]
+#directory_path = "docker/single"
 run_all_yml_in_directory(directory_path)
