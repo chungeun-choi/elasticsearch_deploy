@@ -5,7 +5,7 @@ import sys
 
 def run_docker_compose(file_path):
     try:
-        result = subprocess.run(["docker","compose", "-f", file_path, "up", "d"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(["docker","compose", "-f", file_path, "up", "-d"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(result.stdout.decode())
     except subprocess.CalledProcessError as e:
         print(f"Error occurred: {e}")
