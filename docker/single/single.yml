@@ -24,20 +24,15 @@ services:
       memlock:
         soft: -1
         hard: -1
-
     ports:
       - 9350:9200
       - 9450:9300
     volumes:
       #- ../../config/single:/usr/share/elasticsearch/config
-      - config/single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - config/single/jvm.options:/usr/share/elasticsearch/config/jvm.options
-      - data:/usr/share/elasticsearch/data
-      - logs:/usr/share/elasticsearch/logs
+      - ../../config/single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../../config/single/jvm.options:/usr/share/elasticsearch/config/jvm.options
+      - ./data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
 
     depends_on:
       - make-directory
-
-volumes:
-  data:
-  logs:
