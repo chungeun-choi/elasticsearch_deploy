@@ -16,9 +16,6 @@ services:
       - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
       - data:/usr/share/elasticsearch/data
       - logs:/usr/share/elasticsearch/logs
-
-    depends_on:
-      - make-directory
 volumes:
   data:
   logs:
